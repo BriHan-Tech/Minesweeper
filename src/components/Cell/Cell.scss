@@ -1,3 +1,18 @@
 .cell {
-    background-color: green($color: #000000);
+    // Cell size
+    height: 50px;
+    width: 50px;
+
+    // Cell styling
+    border: 2px solid #A2D148;
+
+    // Center cell data
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &:hover {
+        background-color: #A2D148;
+        cursor: pointer;
+    }
 }
