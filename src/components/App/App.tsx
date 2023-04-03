@@ -5,7 +5,11 @@ import "./App.scss";
 import Board from "../Board/Board";
 
 const App = () => {
-  return <Board />;
+  return (
+    <div className="container">
+      <Board />
+    </div>
+  );
 };
 
 export default App;
