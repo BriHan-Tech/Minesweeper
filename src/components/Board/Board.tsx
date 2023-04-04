@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect, useContext } from "react";
 
 import Cell from "../Cell/Cell";
 import iCell from "../../models/iCell";
@@ -6,6 +6,7 @@ import iCell from "../../models/iCell";
 import "./Board.scss";
 import boardSetup from "../../logic/boardSetup";
 import { clickedCellWithNumMinesZero } from "../../logic/gameLogic";
+import { GameContext } from "../App/GameContext";
 
 const COLS = 10;
 const ROWS = 8;
@@ -13,8 +14,7 @@ const NUM_MINES = 10;
 
 const Board = () => {
   const [board, setBoard] = useState<iCell[][]>([]);
-  const [gameOver, setGameOver] = useState<boolean>(false);
-  const [gameStart, setGameStart] = useState<boolean>(false);
+  const { gameStatus, setGameStatus } = useContext(GameContext);
 
   /**
    * Called when a cell is clicked.
@@ -27,16 +27,16 @@ const Board = () => {
     let tmpCell = JSON.parse(JSON.stringify(cell));
 
     // If this is the first click of the game
-    if (gameStart == false) {
+    if (gameStatus.length == 0) {
       populateBoard(tmpCell.x, tmpCell.y);
-      setGameStart(true);
+      setGameStatus("C");
       return;
     }
 
     // If userc clicks on mine
     if (tmpCell.isMine == true) {
       alert("Game Over!");
-      setGameOver(true);
+      setGameStatus("L");
       return;
     }
 
