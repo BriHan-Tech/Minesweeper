@@ -11,6 +11,7 @@ const Timer = () => {
     let intervalId: any;
     if (gameStatus.length > 0 && gameStatus != "L" && gameStatus != "W")
       intervalId = setInterval(() => setSeconds((prev) => prev + 1), 1000);
+    if (gameStatus == "R") setSeconds(0);
     return () => clearInterval(intervalId);
   }, [gameStatus]);
 

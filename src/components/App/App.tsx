@@ -10,12 +10,23 @@ const App = () => {
   // P = Progressing (Game is in progress)
   // L = Game Lost
   // W = Game Won
+  // R = Reset Game
   const [gameStatus, setGameStatus] = useState<string>("");
 
   return (
     <div className="container">
       <GameContext.Provider value={{ gameStatus, setGameStatus }}>
-        <Timer />
+        <div className="toolbar">
+          <Timer />
+          <button
+            className="toolbar__reset_button"
+            onClick={() => {
+              setGameStatus("R");
+            }}
+          >
+            Reset
+          </button>
+        </div>
         <Board />
       </GameContext.Provider>
     </div>

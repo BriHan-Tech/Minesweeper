@@ -12,3 +12,10 @@ html, body, #root {
   justify-content: center;
   align-items: center;
 }
+
+.toolbar {
+  width: 500px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}

@@ -29,7 +29,7 @@ const Board = () => {
     // If this is the first click of the game
     if (gameStatus.length == 0) {
       populateBoard(tmpCell.x, tmpCell.y);
-      setGameStatus("C");
+      setGameStatus("P");
       return;
     }
 
@@ -72,9 +72,9 @@ const Board = () => {
    * The 2D array is initialized as: array[col][row]
    * Note that the x value is the distance between the cell and the left-hand side of the screen,
    * which is represented by col.
-   * Each cell is represented by an object with properties x, y, isBomb, isFlagged, and numMines.
+   * Each cell is represented by an object of type iCell.
    */
-  useEffect(() => {
+  const newBoard = () => {
     setBoard(
       Array(COLS)
         .fill(null)
@@ -90,7 +90,24 @@ const Board = () => {
             .map((cell, j) => ({ ...cell, y: j }))
         )
     );
+  };
+
+  /**
+   * On component load, a new board is initialized.
+   */
+  useEffect(() => {
+    newBoard();
   }, []);
+
+  /**
+   * When user wants to reset board, the board is reinitialized.
+   */
+  useEffect(() => {
+    if (gameStatus == "R") {
+      newBoard();
+      setGameStatus("");
+    }
+  }, [gameStatus]);
 
   return (
     <>
