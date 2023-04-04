@@ -3,18 +3,27 @@ import React, { useEffect, useState } from "react";
 import iCell from "../../models/iCell";
 import "./Cell.scss";
 
-const Cell = (props: iCell) => {
-  const [isClicked, setIsClicked] = useState<boolean>(true);
+/**
+ * Interface representing the argument object that is passed
+ * into this component
+ */
+interface Args {
+  props: iCell;
+  onCellChange: any;
+}
+
+const Cell = ({ props, onCellChange }: Args) => {
   const [isRightClicked, setIsRightClicked] = useState<boolean>(false);
 
   const handleClick = () => {
     if (isRightClicked) return;
-    setIsClicked(true);
+    props.isClicked = true;
+    onCellChange(props);
   };
 
   const handleRightClick = (e: any) => {
     e.preventDefault();
-    if (isClicked) return;
+    if (props.isClicked) return;
     setIsRightClicked((prev: boolean) => !prev);
   };
 
@@ -22,12 +31,16 @@ const Cell = (props: iCell) => {
     <div
       className="cell"
       style={{
-        backgroundColor: props.isClear ? "white" : "#AAD751",
+        backgroundColor: props.isClicked ? "white" : "#AAD751",
       }}
       onClick={handleClick}
       onContextMenu={handleRightClick}
     >
-      {isClicked && <span>{props.isMine ? "💣" : props.numMines}</span>}
+      {props.isClicked && (
+        <span>
+          {props.isMine ? "💣" : props.numMines > 0 ? props.numMines : ""}
+        </span>
+      )}
       {isRightClicked && <span>🚩</span>}
     </div>
   );
