@@ -5,7 +5,7 @@ import iCell from "../../models/iCell";
 
 import "./Board.scss";
 import boardSetup from "../../logic/boardSetup";
-import { clickedCellWithNumMinesZero } from "../../logic/gameLogic";
+import { clickedCellWithNumMinesZero, didWin } from "../../logic/gameLogic";
 import { GameContext } from "../App/GameContext";
 
 const COLS = 10;
@@ -22,7 +22,7 @@ const Board = () => {
    *
    * @param {iCell} cell - cell the user clicked on
    */
-  const handleCellChange = (cell: iCell) => {
+  const handleCellClick = (cell: iCell) => {
     // Hard copy cell
     let tmpCell = JSON.parse(JSON.stringify(cell));
 
@@ -118,7 +118,7 @@ const Board = () => {
               // Remember to pass in function here
               <Cell
                 props={cell}
-                onCellChange={handleCellChange}
+                onCellClick={handleCellClick}
                 key={JSON.stringify(cell)}
               />
             ))}

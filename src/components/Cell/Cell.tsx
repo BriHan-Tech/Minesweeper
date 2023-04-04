@@ -9,16 +9,16 @@ import "./Cell.scss";
  */
 interface Args {
   props: iCell;
-  onCellChange: any;
+  onCellClick: any;
 }
 
-const Cell = ({ props, onCellChange }: Args) => {
+const Cell = ({ props, onCellClick }: Args) => {
   const [isRightClicked, setIsRightClicked] = useState<boolean>(false);
 
   const handleClick = () => {
     if (isRightClicked) return;
     props.isClicked = true;
-    onCellChange(props);
+    onCellClick(props);
   };
 
   const handleRightClick = (e: any) => {
