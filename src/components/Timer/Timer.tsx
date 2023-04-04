@@ -1,4 +1,6 @@
 import { useState, useEffect, useContext } from "react";
+
+import "./Timer.scss";
 import { GameContext } from "../App/GameContext";
 
 const Timer = () => {
@@ -12,7 +14,7 @@ const Timer = () => {
     return () => clearInterval(intervalId);
   }, [gameStatus]);
 
-  return <>{seconds}</>;
+  return <span className="timer">{seconds}</span>;
 };
 
 export default Timer;

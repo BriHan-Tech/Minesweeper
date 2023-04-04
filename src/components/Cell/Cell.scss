@@ -4,7 +4,7 @@
     width: 50px;
 
     // Cell styling
-    border: 2px solid #A2D148;
+    border: 2px solid var(--dark-green);
 
     // Center cell data
     display: flex;
@@ -12,7 +12,7 @@
     align-items: center;
 
     &:hover {
-        background-color: #A2D148;
+        filter: brightness(105%);
         cursor: pointer;
     }
 }

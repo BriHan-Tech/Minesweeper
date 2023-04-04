@@ -2,4 +2,7 @@
     position: relative;
     display: flex;
     flex-direction: row;
+
+    // Allows all borders to be same size
+    border: 2px solid var(--dark-green);
 }
