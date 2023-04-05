@@ -1,7 +1,11 @@
-import React, { useEffect, useState } from "react";
+import { useState } from "react";
 
 import iCell from "../../interfaces/iCell";
 import "./Cell.scss";
+import click from "../../assets/sounds/click.wav";
+import explosion from "../../assets/sounds/explosion.wav";
+import flag from "../../assets/sounds/flag.wav";
+import removeFlag from "../../assets/sounds/remove_flag.wav";
 
 /**
  * Interface representing the argument object that is passed
@@ -17,6 +21,8 @@ const Cell = ({ props, onCellClick }: Args) => {
 
   const handleClick = () => {
     if (isRightClicked) return;
+    if (!props.isMine && !props.isClicked) new Audio(click).play();
+    if (props.isMine) new Audio(explosion).play();
     props.isClicked = true;
     onCellClick(props);
   };
@@ -24,6 +30,7 @@ const Cell = ({ props, onCellClick }: Args) => {
   const handleRightClick = (e: any) => {
     e.preventDefault();
     if (props.isClicked) return;
+    !isRightClicked ? new Audio(flag).play() : new Audio(removeFlag).play();
     setIsRightClicked((prev: boolean) => !prev);
   };
 
