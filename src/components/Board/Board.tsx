@@ -5,7 +5,7 @@ import iCell from "../../models/iCell";
 
 import "./Board.scss";
 import boardSetup from "../../logic/boardSetup";
-import { clickedCellWithNumMinesZero, didWin } from "../../logic/gameLogic";
+import { clickedCellWithNumMinesZero, isGameWon } from "../../logic/gameLogic";
 import { GameContext } from "../App/GameContext";
 
 const COLS = 10;
@@ -33,7 +33,7 @@ const Board = () => {
       return;
     }
 
-    // If userc clicks on mine
+    // If user clicks on mine
     if (tmpCell.isMine == true) {
       alert("Game Over!");
       setGameStatus("L");
@@ -41,10 +41,12 @@ const Board = () => {
     }
 
     if (tmpCell.numMines == 0) {
+      // If the user clicked a cell with no surrounding mines
       setBoard((prev) =>
         clickedCellWithNumMinesZero({ x: tmpCell.x, y: tmpCell.y }, prev)
       );
     } else {
+      // If the user clicked a regular cell
       setBoard((prev) => {
         let tmpBoard = JSON.parse(JSON.stringify(prev));
         tmpBoard[tmpCell.x][tmpCell.y] = tmpCell;
@@ -108,6 +110,17 @@ const Board = () => {
       setGameStatus("");
     }
   }, [gameStatus]);
+
+  /**
+   * Every time the board changes, we check if the user has won.
+   */
+  useEffect(() => {
+    // If the game status is 'progressing' and the game has been won
+    if (gameStatus == "P" && isGameWon(board)) {
+      alert("Game Won!");
+      setGameStatus("W");
+    }
+  }, [board]);
 
   return (
     <>

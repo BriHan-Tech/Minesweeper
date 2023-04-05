@@ -21,7 +21,7 @@ export const clickedCellWithNumMinesZero = (
 
   // DFS
   while (stack.length > 0) {
-    const pos = stack[0];
+    const pos: iPos = stack[0];
     stack.shift();
 
     // If the position can be cleared and the position
@@ -46,4 +46,19 @@ export const clickedCellWithNumMinesZero = (
     }
   }
   return tmp;
+};
+
+/**
+ * Gets a board and checks if the user won or not
+ *
+ * @param {iCell[][]} board - the board to be checked
+ * @returns {boolean} - user win
+ */
+export const isGameWon = (board: iCell[][]): boolean => {
+  for (let i = 0; i < board.length; i++) {
+    for (let j = 0; j < board[0].length; j++) {
+      if (!board[i][j].isClicked && !board[i][j].isMine) return false;
+    }
+  }
+  return true;
 };
