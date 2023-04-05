@@ -1,4 +1,4 @@
-import iPos from "../models/iPos";
+import iPos from "../interfaces/iPos";
 
 /**
  * Checks whether the current position is in bounds or not

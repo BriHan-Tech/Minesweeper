@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-import iCell from "../../models/iCell";
+import iCell from "../../interfaces/iCell";
 import "./Cell.scss";
 
 /**

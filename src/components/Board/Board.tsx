@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect, useContext } from "react";
 
 import Cell from "../Cell/Cell";
-import iCell from "../../models/iCell";
+import iCell from "../../interfaces/iCell";
 
 import "./Board.scss";
 import boardSetup from "../../logic/boardSetup";

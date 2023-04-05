@@ -1,7 +1,7 @@
 import { isInBounds } from "./helpers";
 
-import iCell from "../models/iCell";
-import iPos from "../models/iPos";
+import iCell from "../interfaces/iCell";
+import iPos from "../interfaces/iPos";
 
 /**
  *
