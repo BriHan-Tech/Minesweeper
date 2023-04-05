@@ -35,7 +35,6 @@ const Board = () => {
 
     // If user clicks on mine
     if (tmpCell.isMine == true) {
-      alert("Game Over!");
       setGameStatus("L");
       return;
     }
@@ -117,7 +116,6 @@ const Board = () => {
   useEffect(() => {
     // If the game status is 'progressing' and the game has been won
     if (gameStatus == "P" && isGameWon(board)) {
-      alert("Game Won!");
       setGameStatus("W");
     }
   }, [board]);
