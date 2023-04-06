@@ -1,0 +1,108 @@
+.slider {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+    &__left {
+        width: 90%;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+    }
+
+    &__label {
+        font-weight: 600;
+        color: white;
+        padding: 0.5rem;
+    }
+
+    &__range-slider {
+        -webkit-appearance: none;
+        appearance: none;
+        background: transparent;
+        width: calc(100% - 20px);
+
+        &:hover {
+            cursor: grab;
+        }
+
+        &:active {
+            cursor: grabbing;
+        }
+
+        &:focus {
+            outline: none;
+
+            &::-webkit-slider-thumb {
+                border: 1px solid var(--dark-green);
+                outline: 1px solid var(--dark-green);
+                outline-offset: 0.125rem;
+            }
+
+            &::-moz-range-thumb {
+                border: 1px solid var(--dark-green);
+                outline: 1px solid var(--dark-green);
+                outline-offset: 0.125rem;
+            }
+        }
+
+        &::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            margin-top: -0.5rem;
+            background-color: var(--green);
+            height: 1.5rem;
+            width: 1.5rem;
+            border-radius: 50%;
+        }
+
+        &::-webkit-slider-runnable-track {
+            background-color: white;
+            border-radius: 0.5rem;
+            height: 0.5rem;
+        }
+
+        &::-moz-range-track {
+            background-color: white;
+            border-radius: 0.5rem;
+            height: 0.5rem;
+        }
+
+        &::-moz-range-thumb {
+            border: none;
+            background-color: var(--green);
+            height: 1.5rem;
+            width: 1.5rem;
+            border-radius: 50%;
+        }
+    }
+
+    &__number-input {
+        appearance: textfield;
+        -moz-appearance: textfield;
+        width: 40px;
+        height: 40px;
+        border: none;
+        text-align: center;
+        padding: .5rem;
+        font-size: 1.125rem;
+
+        border-radius: .75rem;
+        -webkit-border-radius: .75rem;
+        -moz-border-radius: .75rem;
+        -ms-border-radius: .75rem;
+        -o-border-radius: .75rem;
+
+        &:focus {
+            outline: 0;
+        }
+
+        &::-webkit-outer-spin-button,
+        &::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+    }
+}

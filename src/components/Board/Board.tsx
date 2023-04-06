@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect, useContext } from "react";
+import { useState, useEffect, useContext } from "react";
 
 import Cell from "../Cell/Cell";
 import iCell from "../../interfaces/iCell";
@@ -7,14 +7,16 @@ import "./Board.scss";
 import boardSetup from "../../logic/boardSetup";
 import { clickedCellWithNumMinesZero, isGameWon } from "../../logic/gameLogic";
 import { GameContext } from "../App/GameContext";
-
-const COLS = 10;
-const ROWS = 8;
-const NUM_MINES = 10;
+import { GameSettingsContext } from "../App/GameSettingsContext";
 
 const Board = () => {
   const [board, setBoard] = useState<iCell[][]>([]);
   const { gameStatus, setGameStatus } = useContext(GameContext);
+  const { gameSettings, setGameSettings } = useContext(GameSettingsContext);
+
+  let COLS = gameSettings.COLS;
+  let ROWS = gameSettings.ROWS;
+  let NUM_MINES = gameSettings.NUM_MINES;
 
   /**
    * Called when a cell is clicked.
@@ -27,19 +29,19 @@ const Board = () => {
     let tmpCell = JSON.parse(JSON.stringify(cell));
 
     // If this is the first click of the game
-    if (gameStatus.length == 0) {
+    if (gameStatus === "S") {
       populateBoard(tmpCell.x, tmpCell.y);
       setGameStatus("P");
       return;
     }
 
     // If user clicks on mine
-    if (tmpCell.isMine == true) {
+    if (tmpCell.isMine === true) {
       setGameStatus("L");
       return;
     }
 
-    if (tmpCell.numMines == 0) {
+    if (tmpCell.numMines === 0) {
       // If the user clicked a cell with no surrounding mines
       setBoard((prev) =>
         clickedCellWithNumMinesZero({ x: tmpCell.x, y: tmpCell.y }, prev)
@@ -104,9 +106,8 @@ const Board = () => {
    * When user wants to reset board, the board is reinitialized.
    */
   useEffect(() => {
-    if (gameStatus == "R") {
+    if (gameStatus === "S") {
       newBoard();
-      setGameStatus("");
     }
   }, [gameStatus]);
 
@@ -115,7 +116,7 @@ const Board = () => {
    */
   useEffect(() => {
     // If the game status is 'progressing' and the game has been won
-    if (gameStatus == "P" && isGameWon(board)) {
+    if (gameStatus === "P" && isGameWon(board)) {
       setGameStatus("W");
     }
   }, [board]);

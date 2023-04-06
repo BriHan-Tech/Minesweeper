@@ -1,11 +1,12 @@
 import { useState } from "react";
 
 import iCell from "../../interfaces/iCell";
-import "./Cell.scss";
+import { CELL_SIZE } from "../../constants";
 import click from "../../assets/sounds/click.wav";
 import explosion from "../../assets/sounds/explosion.wav";
 import flag from "../../assets/sounds/flag.wav";
 import removeFlag from "../../assets/sounds/remove_flag.wav";
+import "./Cell.scss";
 
 /**
  * Interface representing the argument object that is passed
@@ -39,6 +40,8 @@ const Cell = ({ props, onCellClick }: Args) => {
       className="cell"
       style={{
         backgroundColor: props.isClicked ? "white" : "#AAD751",
+        width: `${CELL_SIZE}px`,
+        height: `${CELL_SIZE}px`,
       }}
       onClick={handleClick}
       onContextMenu={handleRightClick}

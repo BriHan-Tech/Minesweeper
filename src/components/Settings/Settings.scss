@@ -1,0 +1,42 @@
+.settings-popup {
+    width: clamp(50%, 600px, 90%);
+
+    margin: 0;
+    padding: 2rem 2rem;
+    border-radius: 0.5rem;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    background-color: var(--brown);
+    border: 10px solid var(--dark-brown);
+
+    &__title {
+        text-align: center;
+        font-size: 4.5rem;
+        color: #fff;
+    }
+
+    &__settings {
+        width: 100%;
+        margin: 20px 0;
+        padding: 0 2rem 1.5rem 2rem;
+        background-color: gray;
+        border-radius: 0.5rem;
+        -webkit-border-radius: 0.5rem;
+        -moz-border-radius: 0.5rem;
+        -ms-border-radius: 0.5rem;
+        -o-border-radius: 0.5rem;
+
+        &__slider {
+            padding: 1.5rem 0 0 0 ;
+
+            &__label {
+                color: white;
+            }
+        }
+    }
+
+}

@@ -35,23 +35,16 @@
         border-radius: 4rem;
         transition: all .2s;
         border: none;
-
         font-weight: 600;
-
-        &::after {
-            content: "";
-            height: 100%;
-            width: 100%;
-            border-radius: 4rem;
-            position: absolute;
-            top: 0;
-            left: 0;
-            transition: all .4s;
-        }
+        color: var(--dark-brown);
 
         &:hover {
             cursor: pointer;
             transform: translateY(-3px);
+            -webkit-transform: translateY(-3px);
+            -moz-transform: translateY(-3px);
+            -ms-transform: translateY(-3px);
+            -o-transform: translateY(-3px);
             box-shadow: 0 1rem 2rem rgba(#000,.2);
         }
     }

@@ -34,7 +34,7 @@ const GameFinishedPopup = () => {
         <button
           className="popup__btn"
           onClick={() => {
-            setGameStatus("R");
+            setGameStatus("");
           }}
         >
           Play Again!
