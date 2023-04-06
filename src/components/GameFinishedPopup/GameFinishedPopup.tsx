@@ -5,7 +5,7 @@ import Backdrop from "../Backdrop/Backdrop";
 import { GameContext } from "../App/GameContext";
 import { popUp, dropDown } from "../../animations/popUpAnimations";
 import crown from "../../assets/imgs/crown.svg";
-import bomb from "../../assets/imgs/bomb.svg";
+import mine from "../../assets/imgs/mine.svg";
 import "./GameFinishedPopup.scss";
 
 const GameFinishedPopup = () => {
@@ -15,7 +15,7 @@ const GameFinishedPopup = () => {
     <Backdrop>
       <motion.img
         className="icon"
-        src={gameStatus === "W" ? crown : bomb}
+        src={gameStatus === "W" ? crown : mine}
         variants={dropDown}
         initial="hidden"
         animate="visible"
