@@ -1,0 +1,50 @@
+.toolbar {
+  width: 500px;
+  padding-bottom: 0.5rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+  &__left {
+    display: flex;
+    flex-direction: row;
+
+    &__mine-count {
+      font-weight: 600;
+      font-size: 20px;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      padding-right: 1.2rem;
+
+      &__icon {
+        width: 25px;
+        height: 25px;
+        margin-right: 5px;
+      }
+    }
+  }
+
+  &__reset-btn {
+    background: none;
+    color: inherit;
+    border: none;
+    padding: 0;
+    width: 25px;
+    height: 25px;
+    cursor: pointer;
+    transition: all .2s ease-in-out;
+    -webkit-transition: all .2s ease-in-out;
+    -moz-transition: all .2s ease-in-out;
+    -ms-transition: all .2s ease-in-out;
+    -o-transition: all .2s ease-in-out;
+
+    &:hover {
+      transform: rotate(180);
+      -webkit-transform: rotate(180);
+      -moz-transform: rotate(180);
+      -ms-transform: rotate(180);
+      -o-transform: rotate(180);
+    }
+  }
+}
