@@ -1,6 +1,6 @@
 import { useState, useEffect, useContext } from "react";
 
-import { GameContext } from "../App/GameContext";
+import { GameContext, GameState } from "../App/GameContext";
 import stopwatch from "../../assets/imgs/stopwatch.svg";
 
 import "./Timer.scss";
@@ -20,13 +20,16 @@ const Timer = (): JSX.Element => {
     let intervalId: any;
 
     // If the game started & the game is not finished (neither lost nor won)
-    if (gameStatus.length > 0 && gameStatus !== "L" && gameStatus !== "W") {
+    if (
+      gameStatus === GameState.Starting ||
+      gameStatus === GameState.Progressing
+    ) {
       // Start the timer by incrementing seconds every 1000ms (1 second)
       intervalId = setInterval(() => setSeconds((prev) => prev + 1), 1000);
     }
 
     // If the game status is "S" (game reset), reset timer is set to 0 seconds
-    if (gameStatus === "S") setSeconds(0);
+    if (gameStatus === GameState.Starting) setSeconds(0);
 
     // Clear the interval when component unmounts
     return () => clearInterval(intervalId);

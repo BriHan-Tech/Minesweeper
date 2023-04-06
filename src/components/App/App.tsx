@@ -5,7 +5,7 @@ import Board from "../Board/Board";
 import Toolbar from "../Toolbar/Toolbar";
 import Settings from "../Settings/Settings";
 import GameFinishedPopup from "../GameFinishedPopup/GameFinishedPopup";
-import { GameContext } from "./GameContext";
+import { GameContext, GameState } from "./GameContext";
 import { GameSettingsContext } from "./GameSettingsContext";
 import { iGameSettings } from "../../interfaces/iGameSettings";
 
@@ -17,12 +17,7 @@ import "./App.scss";
  * @returns {JSX.Element} The JSX element representing the Minesweeper game.
  */
 const App = (): JSX.Element => {
-  // "" = Game has not started
-  // S = Game starting
-  // P = Progressing (Game is in progress)
-  // L = Game Lost
-  // W = Game Won
-  const [gameStatus, setGameStatus] = useState<string>("");
+  const [gameStatus, setGameStatus] = useState<number>(GameState.Prologue);
 
   // Game settings state
   const [gameSettings, setGameSettings] = useState<iGameSettings>({
@@ -37,13 +32,15 @@ const App = (): JSX.Element => {
         {/* AnimatePresence component for managing animations */}
         <AnimatePresence initial={false} onExitComplete={() => null}>
           {/* Render settings component when game has not been started */}
-          {gameStatus === "" && <Settings />}
+          {gameStatus === GameState.Prologue && <Settings />}
           {/* Render GameFinishedPoopup component when game is won or lost*/}
-          {(gameStatus === "W" || gameStatus === "L") && <GameFinishedPopup />}
+          {(gameStatus === GameState.Won || gameStatus === GameState.Lost) && (
+            <GameFinishedPopup />
+          )}
         </AnimatePresence>
 
         {/* Render game interface when game is starting/in progress/lost/won */}
-        {gameStatus !== "" && (
+        {gameStatus !== GameState.Prologue && (
           <div className="container">
             {/* Render toolbar */}
             <Toolbar />

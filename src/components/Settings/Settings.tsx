@@ -5,7 +5,7 @@ import Backdrop from "../Backdrop/Backdrop";
 import Slider from "../Slider/Slider";
 import { dropDown } from "../../animations/popUpAnimations";
 import { GameSettingsContext } from "../App/GameSettingsContext";
-import { GameContext } from "../App/GameContext";
+import { GameContext, GameState } from "../App/GameContext";
 import {
   calculateMaxMines,
   calculateMaxCols,
@@ -60,7 +60,7 @@ const Settings = (): JSX.Element => {
   // Function used to start the game
   const startGame = (): void => {
     setGameSettings(boardSettings);
-    setGameStatus("S");
+    setGameStatus(GameState.Starting);
   };
 
   // Effect to handle window resize and update window width state

@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 
 import Timer from "../Timer/Timer";
 import { GameSettingsContext } from "../App/GameSettingsContext";
-import { GameContext } from "../App/GameContext";
+import { GameContext, GameState } from "../App/GameContext";
 import { CELL_SIZE } from "../../constants";
 import mineLineArt from "../../assets/imgs/mine-lineart.svg";
 import reset from "../../assets/imgs/reset.svg";
@@ -52,7 +52,7 @@ const Toolbar = (): JSX.Element => {
           transition: { duration: 0.1, ease: "linear" },
         }}
         onClick={() => {
-          setGameStatus("");
+          setGameStatus(GameState.Prologue);
         }}
       ></motion.button>
     </div>

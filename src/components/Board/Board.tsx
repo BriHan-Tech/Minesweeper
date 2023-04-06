@@ -5,7 +5,8 @@ import iCell from "../../interfaces/iCell";
 
 import boardSetup from "../../logic/boardSetup";
 import { clickedCellWithNumMinesZero, isGameWon } from "../../logic/gameLogic";
-import { GameContext } from "../App/GameContext";
+import { GameContext, GameState } from "../App/GameContext";
+import { iGameStatus } from "../../interfaces/iGameStatus";
 import { GameSettingsContext } from "../App/GameSettingsContext";
 import winningSoundEffect from "../../assets/sounds/win.wav";
 
@@ -25,7 +26,7 @@ const Board = (): JSX.Element => {
   // State hook to manage the game board
   const [board, setBoard] = useState<iCell[][]>([]);
   // Context hook to manage game status
-  const { gameStatus, setGameStatus } = useContext(GameContext);
+  const { gameStatus, setGameStatus } = useContext<iGameStatus>(GameContext);
   // Context hook to manage game settings
   const { gameSettings } = useContext(GameSettingsContext);
 
@@ -44,15 +45,15 @@ const Board = (): JSX.Element => {
     let tmpCell = JSON.parse(JSON.stringify(cell));
 
     // If this is the first click of the game
-    if (gameStatus === "S") {
+    if (gameStatus === GameState.Starting) {
       populateBoard(tmpCell.x, tmpCell.y);
-      setGameStatus("P");
+      setGameStatus(GameState.Progressing);
       return;
     }
 
     // If user clicks on mine
     if (tmpCell.isMine === true) {
-      setGameStatus("L");
+      setGameStatus(GameState.Lost);
       return;
     }
 
@@ -122,7 +123,7 @@ const Board = (): JSX.Element => {
    * When user wants to reset board, the board is reinitialized.
    */
   useEffect(() => {
-    if (gameStatus === "S") {
+    if (gameStatus === GameState.Starting) {
       newBoard();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -133,9 +134,9 @@ const Board = (): JSX.Element => {
    */
   useEffect(() => {
     // If the game status is 'progressing' and the game has been won
-    if (gameStatus === "P" && isGameWon(board)) {
+    if (gameStatus === GameState.Progressing && isGameWon(board)) {
       new Audio(winningSoundEffect).play(); // Play winning audio
-      setGameStatus("W");
+      setGameStatus(GameState.Won);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [board]);

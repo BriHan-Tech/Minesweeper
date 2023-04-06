@@ -2,8 +2,9 @@ import { useContext } from "react";
 import { motion } from "framer-motion";
 
 import Backdrop from "../Backdrop/Backdrop";
-import { GameContext } from "../App/GameContext";
+import { GameContext, GameState } from "../App/GameContext";
 import { popUp, dropDown } from "../../animations/popUpAnimations";
+import { iGameStatus } from "../../interfaces/iGameStatus";
 import crown from "../../assets/imgs/crown.svg";
 import mine from "../../assets/imgs/mine.svg";
 
@@ -18,7 +19,7 @@ import "./GameFinishedPopup.scss";
  * @returns {JSX.Element} - The rendered GameFinishedPopup Component
  */
 const GameFinishedPopup = (): JSX.Element => {
-  const { gameStatus, setGameStatus } = useContext(GameContext);
+  const { gameStatus, setGameStatus } = useContext<iGameStatus>(GameContext);
 
   return (
     <Backdrop>
@@ -26,7 +27,7 @@ const GameFinishedPopup = (): JSX.Element => {
       <motion.img
         alt="Game Result Icon"
         className="icon"
-        src={gameStatus === "W" ? crown : mine}
+        src={gameStatus === GameState.Won ? crown : mine}
         variants={dropDown}
         initial="hidden"
         animate="visible"
@@ -43,14 +44,14 @@ const GameFinishedPopup = (): JSX.Element => {
         <h1 className="popup__message">
           {
             // Displays different message based on gameStatus.
-            gameStatus === "W" ? "You Win!" : "You Lose!"
+            gameStatus === GameState.Won ? "You Win!" : "You Lose!"
           }
         </h1>
         <button
           className="btn"
           onClick={() => {
             // Resetting gameStatus to allow user to play again.
-            setGameStatus("");
+            setGameStatus(GameState.Prologue);
           }}
         >
           Play Again!
