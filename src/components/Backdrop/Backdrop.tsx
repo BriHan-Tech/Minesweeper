@@ -1,11 +1,17 @@
 import { motion } from "framer-motion";
+import { ReactNode } from "react";
 
 import "./Backdrop.scss";
 
 /**
- * Provides a backdrop for all popup components
+ * Backdrop Component
+ * Component provides a fading background for its child components.
+ * Used in Popup Components
+ *
+ * @param {ReactNode} children - Child components to be rendered within the backdrop.
+ * @returns {JSX.Element} - Backdrop component.
  */
-const Backdrop = ({ children }: any) => {
+const Backdrop = ({ children }: { children: ReactNode }): JSX.Element => {
   return (
     <motion.div
       className="backdrop"

@@ -6,14 +6,25 @@ import { GameContext } from "../App/GameContext";
 import { popUp, dropDown } from "../../animations/popUpAnimations";
 import crown from "../../assets/imgs/crown.svg";
 import mine from "../../assets/imgs/mine.svg";
+
 import "./GameFinishedPopup.scss";
 
-const GameFinishedPopup = () => {
+/**
+ * Game Finished Component
+ * Component is a modal that displays a message and an icon depending on gameStatus.
+ * Indicates whether the player has won or lost the game based on gameStatus context.
+ * Provides option to reset the game and play again
+ *
+ * @returns {JSX.Element} - The rendered GameFinishedPopup Component
+ */
+const GameFinishedPopup = (): JSX.Element => {
   const { gameStatus, setGameStatus } = useContext(GameContext);
 
   return (
     <Backdrop>
+      {/* Animate crown/mine icon depending on gameStatus. */}
       <motion.img
+        alt="Game Result Icon"
         className="icon"
         src={gameStatus === "W" ? crown : mine}
         variants={dropDown}
@@ -21,6 +32,7 @@ const GameFinishedPopup = () => {
         animate="visible"
         exit="exit"
       />
+      {/* Animate container with message */}
       <motion.div
         className="popup"
         variants={popUp}
@@ -29,11 +41,15 @@ const GameFinishedPopup = () => {
         exit="exit"
       >
         <h1 className="popup__message">
-          {gameStatus === "W" ? "You Win!" : "You Lose!"}
+          {
+            // Displays different message based on gameStatus.
+            gameStatus === "W" ? "You Win!" : "You Lose!"
+          }
         </h1>
         <button
           className="btn"
           onClick={() => {
+            // Resetting gameStatus to allow user to play again.
             setGameStatus("");
           }}
         >

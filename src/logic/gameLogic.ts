@@ -4,10 +4,14 @@ import iCell from "../interfaces/iCell";
 import iPos from "../interfaces/iPos";
 
 /**
+ * Clicked cell with zero surrounding mines
+ * A function that takes a clicked position and a board of cells as input and
+ * performs a DFS to reveal cells with zero adjacent mines. Function returns
+ * a new board with update cell states
  *
- * @param clickPos
- * @param board
- * @returns
+ * @param {iPos} clickPos - Position of clicked cell
+ * @param {iCell} board - Board of cell to be processed
+ * @returns {iCell} - The updated board with revealed cells
  */
 export const clickedCellWithNumMinesZero = (
   clickPos: iPos,
@@ -16,13 +20,13 @@ export const clickedCellWithNumMinesZero = (
   // Set up DFS
   // Set up a deep copy of the board
   let tmp: iCell[][] = JSON.parse(JSON.stringify(board));
-  let stack: iPos[] = [clickPos];
-  let history: Set<string> = new Set();
+  let stack: iPos[] = [clickPos]; // Stack to store positions to be processed
+  let history: Set<string> = new Set(); // Keep track of visited positions
 
   // DFS
   while (stack.length > 0) {
-    const pos: iPos = stack[0];
-    stack.shift();
+    const pos: iPos = stack[0]; // Get next position
+    stack.shift(); // Remove the processed position
 
     // If the position can be cleared and the position
     // has not already been cleared

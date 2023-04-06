@@ -7,9 +7,17 @@ import { GameContext } from "../App/GameContext";
 import { CELL_SIZE } from "../../constants";
 import mineLineArt from "../../assets/imgs/mine-lineart.svg";
 import reset from "../../assets/imgs/reset.svg";
+
 import "./Toolbar.scss";
 
-const Toolbar = () => {
+/**
+ * Toolbar Component
+ * Component displays the toolbar at the top of the game board. It includes the mine count,
+ * timer, and reset game button. The mine count shows the number of mines left to be flagged. The timer
+ * displays the elapsed time since the game started. The reset game button allows the user to reset the game.
+ * @returns {JSX.Element} - JSX element representing the Toolbar component.
+ */
+const Toolbar = (): JSX.Element => {
   const { gameSettings } = useContext(GameSettingsContext);
   const { setGameStatus } = useContext(GameContext);
 
@@ -25,7 +33,7 @@ const Toolbar = () => {
         <span className="toolbar__left__mine-count">
           <img
             src={mineLineArt}
-            alt="mines"
+            alt="Mine Icon"
             className="toolbar__left__mine-count__icon"
           />
           {gameSettings.NUM_MINES}

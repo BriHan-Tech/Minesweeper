@@ -11,7 +11,17 @@ import winningSoundEffect from "../../assets/sounds/win.wav";
 
 import "./Board.scss";
 
-const Board = () => {
+/**
+ * Board Component
+ * Component represents the game board for the minesweeper game.
+ * Manages state of the game borad and handles user interactions such as
+ * cell clicks. It also populates the board with mines and labels the cells
+ * with the number of mines that surround them. The component also checks for game win
+ * conditions and plays winning sound effects when the game is won.
+ *
+ * @returns {JSX.Element} - Returns the rendered Board Component
+ */
+const Board = (): JSX.Element => {
   // State hook to manage the game board
   const [board, setBoard] = useState<iCell[][]>([]);
   // Context hook to manage game status
@@ -105,6 +115,7 @@ const Board = () => {
    */
   useEffect(() => {
     newBoard();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   /**
@@ -114,6 +125,7 @@ const Board = () => {
     if (gameStatus === "S") {
       newBoard();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [gameStatus]);
 
   /**
@@ -125,6 +137,7 @@ const Board = () => {
       new Audio(winningSoundEffect).play(); // Play winning audio
       setGameStatus("W");
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [board]);
 
   return (

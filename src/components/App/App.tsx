@@ -8,9 +8,15 @@ import GameFinishedPopup from "../GameFinishedPopup/GameFinishedPopup";
 import { GameContext } from "./GameContext";
 import { GameSettingsContext } from "./GameSettingsContext";
 import { iGameSettings } from "../../interfaces/iGameSettings";
+
 import "./App.scss";
 
-const App = () => {
+/**
+ * Main component for the Minesweeper game
+ *
+ * @returns {JSX.Element} The JSX element representing the Minesweeper game.
+ */
+const App = (): JSX.Element => {
   // "" = Game has not started
   // S = Game starting
   // P = Progressing (Game is in progress)

@@ -11,9 +11,10 @@ import {
   calculateMaxCols,
   calculateMaxRows,
 } from "../../logic/boardSizeCalculations";
-import { CELL_SIZE, MIN_COLS, MIN_ROWS, MIN_MINES } from "../../constants";
+import { MIN_COLS, MIN_ROWS, MIN_MINES } from "../../constants";
 import { iGameSettings } from "../../interfaces/iGameSettings";
 import { iGameSettingsContext } from "../../interfaces/iGameSettings";
+
 import "./Settings.scss";
 
 // Animation configuration for the dropdown
@@ -22,7 +23,14 @@ const dropDownAnimation = {
   visible: { ...dropDown.visible, y: "0%" },
 };
 
-const Settings = () => {
+/**
+ * Settings Component
+ * Component is a popup modal that allows users to configure game settings such as
+ * number of cols, number of rows, number of mines for Minesweeper.
+ *
+ * @returns {JSX.Element} - Returns the JSX element for the Settings Component
+ */
+const Settings = (): JSX.Element => {
   // Context
   const { setGameStatus } = useContext<any>(GameContext);
   const { gameSettings, setGameSettings } =
