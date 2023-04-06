@@ -6,11 +6,17 @@ import Slider from "../Slider/Slider";
 import { dropDown } from "../../animations/popUpAnimations";
 import { GameSettingsContext } from "../App/GameSettingsContext";
 import { GameContext } from "../App/GameContext";
+import {
+  calculateMaxMines,
+  calculateMaxCols,
+  calculateMaxRows,
+} from "../../logic/boardSizeCalculations";
 import { CELL_SIZE, MIN_COLS, MIN_ROWS, MIN_MINES } from "../../constants";
 import { iGameSettings } from "../../interfaces/iGameSettings";
 import { iGameSettingsContext } from "../../interfaces/iGameSettings";
 import "./Settings.scss";
 
+// Animation configuration for the dropdown
 const dropDownAnimation = {
   ...dropDown,
   visible: { ...dropDown.visible, y: "0%" },
@@ -26,36 +32,30 @@ const Settings = () => {
   const [windowWidth, setWindowWidth] = useState<number>(window.innerWidth);
   const [windowHeight, setWindowHeight] = useState<number>(window.innerHeight);
 
-  // Duplicate of gameSettings that is changed
+  // Duplicate of gameSettings that is changed when user interacts
+  // with this component
   const [boardSettings, setBoardSettings] = useState<iGameSettings>(
     JSON.parse(JSON.stringify(gameSettings))
   );
 
-  const calculateMaxMines = (): number => {
-    return Math.min(
-      Math.floor((boardSettings.COLS * boardSettings.ROWS) / 2),
-      boardSettings.COLS * boardSettings.ROWS - 30
-    );
-  };
+  // Maximum values states
+  const [maxMines, setMaxMines] = useState<number>(
+    calculateMaxMines(boardSettings)
+  );
+  const [maxCols, setMaxCols] = useState<number>(
+    calculateMaxCols(windowWidth, MIN_COLS)
+  );
+  const [maxRows, setMaxRows] = useState<number>(
+    calculateMaxRows(windowHeight, MIN_ROWS)
+  );
 
-  const calculateMaxCols = (): number => {
-    return Math.max(Math.floor(windowWidth / CELL_SIZE) - 1, MIN_COLS);
-  };
-
-  const calculateMaxRows = (): number => {
-    return Math.max(Math.floor(windowHeight / CELL_SIZE) - 1, MIN_ROWS);
-  };
-
-  // Maximum values
-  const [maxMines, setMaxMines] = useState<number>(calculateMaxMines());
-  const [maxCols, setMaxCols] = useState<number>(calculateMaxCols());
-  const [maxRows, setMaxRows] = useState<number>(calculateMaxRows());
-
+  // Function used to start the game
   const startGame = (): void => {
     setGameSettings(boardSettings);
     setGameStatus("S");
   };
 
+  // Effect to handle window resize and update window width state
   useEffect(() => {
     const handleResize = () => {
       setWindowWidth(window.innerWidth);
@@ -69,20 +69,25 @@ const Settings = () => {
     };
   }, []);
 
+  // Effect to update maximum cols when window width changes
   useEffect(() => {
-    setMaxCols(calculateMaxCols());
+    setMaxCols(calculateMaxCols(windowWidth, MIN_COLS));
   }, [windowWidth]);
 
+  // Effect to update maximum rows when window height changes
   useEffect(() => {
-    setMaxRows(calculateMaxRows());
+    setMaxRows(calculateMaxRows(windowHeight, MIN_ROWS));
   }, [windowHeight]);
 
+  // Effect to update maximum number of mines when board setting change
   useEffect(() => {
-    setMaxMines(calculateMaxMines());
+    setMaxMines(calculateMaxMines(boardSettings));
   }, [boardSettings]);
 
   return (
+    // Main backdrop container
     <Backdrop>
+      {/* Settings popup container */}
       <motion.div
         className="settings-popup"
         variants={dropDownAnimation}
@@ -90,10 +95,13 @@ const Settings = () => {
         animate="visible"
         exit="exit"
       >
+        {/* Title */}
         <h1 className="settings-popup__title">
           👋 <br /> Welcome to Minesweeper!
         </h1>
+        {/* Settings Section */}
         <div className="settings-popup__settings">
+          {/* Number of Columns Slider */}
           <div className="settings-popup__settings__slider">
             <h3 className="settings-popup__settings__slider__label">
               Number of Columns
@@ -111,6 +119,7 @@ const Settings = () => {
               }}
             />
           </div>
+          {/* Number of Rows Slider */}
           <div className="settings-popup__settings__slider">
             <h3 className="settings-popup__settings__slider__label">
               Number of Rows
@@ -128,6 +137,7 @@ const Settings = () => {
               }}
             />
           </div>
+          {/* Number of Mines Slider */}
           <div className="settings-popup__settings__slider">
             <h3 className="settings-popup__settings__slider__label">
               Number of Mines
@@ -147,6 +157,7 @@ const Settings = () => {
           </div>
         </div>
 
+        {/* Start Game Button */}
         <button className="btn" onClick={startGame}>
           Start Game!
         </button>
