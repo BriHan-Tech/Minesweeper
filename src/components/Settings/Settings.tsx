@@ -1,4 +1,4 @@
-import { useContext, useState, useEffect, ChangeEvent } from "react";
+import { useContext, useState, useEffect } from "react";
 import { motion } from "framer-motion";
 
 import Backdrop from "../Backdrop/Backdrop";

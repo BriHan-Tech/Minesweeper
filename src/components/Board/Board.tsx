@@ -14,7 +14,7 @@ import "./Board.scss";
 const Board = () => {
   const [board, setBoard] = useState<iCell[][]>([]);
   const { gameStatus, setGameStatus } = useContext(GameContext);
-  const { gameSettings, setGameSettings } = useContext(GameSettingsContext);
+  const { gameSettings } = useContext(GameSettingsContext);
 
   let COLS = gameSettings.COLS;
   let ROWS = gameSettings.ROWS;

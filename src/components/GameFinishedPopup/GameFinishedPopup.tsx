@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { motion, useAnimation } from "framer-motion";
+import { motion } from "framer-motion";
 
 import Backdrop from "../Backdrop/Backdrop";
 import { GameContext } from "../App/GameContext";
