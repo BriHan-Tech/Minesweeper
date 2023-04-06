@@ -6,10 +6,10 @@
 }
 
 .popup {
-    width: clamp(600px, 600px, 90%);
-    height: min(50%, 300px);
+    width: min(80%, 600px);
+    height: min(50%, 350px);
 
-    margin: auto;
+    margin: 0;
     padding: 0 2rem;
     border-radius: 0.5rem;
 
@@ -26,5 +26,29 @@
         font-size: 6rem;
         color: #fff;
         padding-bottom: 1rem;
+    }
+}
+
+@media screen and (max-width: 650px) {
+    .icon {
+        width: 200px;
+        height: 200px;
+    }
+
+    .popup {
+        padding: 0 0.25rem;
+        &__message {
+            font-size: 4rem;
+        }
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .popup {
+        height: 250px;
+
+        &__message {
+            font-size: 3rem;
+        }
     }
 }
