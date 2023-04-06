@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/Minesweeper/static/css/main.d91e3e45.css",
+    "main.js": "/Minesweeper/static/js/main.bf467cb9.js",
+    "static/js/787.e867dfcb.chunk.js": "/Minesweeper/static/js/787.e867dfcb.chunk.js",
+    "static/media/win.wav": "/Minesweeper/static/media/win.75144159a1593eb6ae01.wav",
+    "static/media/explosion.wav": "/Minesweeper/static/media/explosion.67aabb51c1098abbf52d.wav",
+    "static/media/remove_flag.wav": "/Minesweeper/static/media/remove_flag.2e15376827c652fc80a4.wav",
+    "static/media/flag.wav": "/Minesweeper/static/media/flag.0096b96538e4b5ae287d.wav",
+    "static/media/click.wav": "/Minesweeper/static/media/click.bc9a2671e7ccec3b64e0.wav",
+    "static/media/mine.svg": "/Minesweeper/static/media/mine.e54afc6536d843533f5a55c2a41383c7.svg",
+    "static/media/crown.svg": "/Minesweeper/static/media/crown.39533de3917588a64ba03b9abfcc057f.svg",
+    "static/media/mine-lineart.svg": "/Minesweeper/static/media/mine-lineart.cecd9fccfc1b87ee13997b164dde5e78.svg",
+    "index.html": "/Minesweeper/index.html",
+    "static/media/reset.svg": "/Minesweeper/static/media/reset.68ad6bae660a71c698479772a11c7e11.svg",
+    "static/media/stopwatch.svg": "/Minesweeper/static/media/stopwatch.662f9ed8f439b73b2c74d1a310735120.svg",
+    "main.d91e3e45.css.map": "/Minesweeper/static/css/main.d91e3e45.css.map",
+    "main.bf467cb9.js.map": "/Minesweeper/static/js/main.bf467cb9.js.map",
+    "787.e867dfcb.chunk.js.map": "/Minesweeper/static/js/787.e867dfcb.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.d91e3e45.css",
+    "static/js/main.bf467cb9.js"
+  ]
+}
