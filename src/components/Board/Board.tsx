@@ -12,13 +12,16 @@ import winningSoundEffect from "../../assets/sounds/win.wav";
 import "./Board.scss";
 
 const Board = () => {
+  // State hook to manage the game board
   const [board, setBoard] = useState<iCell[][]>([]);
+  // Context hook to manage game status
   const { gameStatus, setGameStatus } = useContext(GameContext);
+  // Context hook to manage game settings
   const { gameSettings } = useContext(GameSettingsContext);
 
-  let COLS = gameSettings.COLS;
-  let ROWS = gameSettings.ROWS;
-  let NUM_MINES = gameSettings.NUM_MINES;
+  let COLS = gameSettings.COLS; // Number of columns on the game board
+  let ROWS = gameSettings.ROWS; // Number of rows on the game board
+  let NUM_MINES = gameSettings.NUM_MINES; // Number of mines in the game board
 
   /**
    * Called when a cell is clicked.
@@ -63,8 +66,8 @@ const Board = () => {
    * number of mines that surround them.
    * Called when user makes their first click
    *
-   * @param initX - x position of first click
-   * @param initY - y position of first click
+   * @param {number} initX - x position of first click
+   * @param {number} initY - y position of first click
    */
   const populateBoard = (initX: number, initY: number) => {
     setBoard((prev) => {
@@ -119,28 +122,25 @@ const Board = () => {
   useEffect(() => {
     // If the game status is 'progressing' and the game has been won
     if (gameStatus === "P" && isGameWon(board)) {
-      new Audio(winningSoundEffect).play();
+      new Audio(winningSoundEffect).play(); // Play winning audio
       setGameStatus("W");
     }
   }, [board]);
 
   return (
-    <>
-      <div className="board">
-        {board.map((col, i) => (
-          <div className="col" key={i}>
-            {col.map((cell, j) => (
-              // Remember to pass in function here
-              <Cell
-                props={cell}
-                onCellClick={handleCellClick}
-                key={JSON.stringify(cell)}
-              />
-            ))}
-          </div>
-        ))}
-      </div>
-    </>
+    <div className="board">
+      {board.map((col, i) => (
+        <div className="col" key={i}>
+          {col.map((cell, j) => (
+            <Cell
+              props={cell}
+              onCellClick={handleCellClick}
+              key={JSON.stringify(cell)}
+            />
+          ))}
+        </div>
+      ))}
+    </div>
   );
 };
 
