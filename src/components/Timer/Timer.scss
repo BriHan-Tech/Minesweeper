@@ -1,4 +1,13 @@
 .timer {
     font-weight: 600;
     font-size: 20px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    &__icon {
+        width: 25px;
+        height: 25px;
+        margin-right: 5px;
+    }
 }
