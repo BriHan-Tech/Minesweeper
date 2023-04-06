@@ -1,0 +1,24 @@
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+
+    // Font Smoothing
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+
+    // Text Rendering
+    text-rendering: optimizeLegibility;
+}
+
+:root {
+  --green: #AAD751;
+  --dark-green: #A2D148;
+  --brown: #ae692c;
+  --dark-brown: #814e22;
+}
