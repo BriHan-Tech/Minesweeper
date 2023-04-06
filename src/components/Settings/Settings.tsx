@@ -118,7 +118,7 @@ const Settings = () => {
           </div>
           <div className="settings-popup__settings__slider">
             <h3 className="settings-popup__settings__slider__label">
-              Number of Bombs
+              Number of Mines
             </h3>
             <Slider
               min={MIN_MINES}
