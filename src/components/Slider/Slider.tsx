@@ -1,8 +1,14 @@
-import { ChangeEvent } from "react";
+import { ChangeEvent, useEffect } from "react";
 import { iSlider } from "../../interfaces/iSlider";
 import "./Slider.scss";
 
 const Slider = ({ min, max, value, onChange }: iSlider) => {
+  // If the value is greater than the maximum value,
+  // set the value to be the maximum value
+  useEffect(() => {
+    if (value > max) onChange(max);
+  }, [max]);
+
   return (
     <div className="slider">
       <div className="slider__left">
@@ -14,7 +20,12 @@ const Slider = ({ min, max, value, onChange }: iSlider) => {
           max={max}
           step="1"
           defaultValue={value}
-          onChange={(e: ChangeEvent<HTMLInputElement>) => onChange(e)}
+          onChange={(e: ChangeEvent<HTMLInputElement>) => {
+            let val: number = Number(e.target.value);
+            if (val < min) val = min;
+            if (val > max) val = max;
+            onChange(val);
+          }}
           className="slider__range-slider"
         />
         <span className="slider__label">{max}</span>
@@ -24,7 +35,12 @@ const Slider = ({ min, max, value, onChange }: iSlider) => {
         min={min}
         max={max}
         value={value}
-        onChange={(e: ChangeEvent<HTMLInputElement>) => onChange(e)}
+        onChange={(e: ChangeEvent<HTMLInputElement>) => {
+          let val: number = Number(e.target.value);
+          if (val < min) val = min;
+          if (val > max) val = max;
+          onChange(val);
+        }}
         className="slider__number-input"
       />
     </div>

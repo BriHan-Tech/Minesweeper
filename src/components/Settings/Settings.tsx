@@ -17,29 +17,39 @@ const dropDownAnimation = {
 };
 
 const Settings = () => {
+  // Context
   const { setGameStatus } = useContext<any>(GameContext);
   const { gameSettings, setGameSettings } =
     useContext<iGameSettingsContext>(GameSettingsContext);
+
+  // For number of cols/rows calculations
   const [windowWidth, setWindowWidth] = useState<number>(window.innerWidth);
   const [windowHeight, setWindowHeight] = useState<number>(window.innerHeight);
+
+  // Duplicate of gameSettings that is changed
   const [boardSettings, setBoardSettings] = useState<iGameSettings>(
     JSON.parse(JSON.stringify(gameSettings))
   );
 
-  const maxCols = (): number => {
-    return Math.floor(windowWidth / CELL_SIZE);
-  };
-
-  const maxRows = (): number => {
-    return Math.floor(windowHeight / CELL_SIZE);
-  };
-
-  const maxMines = (): number => {
+  const calculateMaxMines = (): number => {
     return Math.min(
       Math.floor((boardSettings.COLS * boardSettings.ROWS) / 2),
       boardSettings.COLS * boardSettings.ROWS - 30
     );
   };
+
+  const calculateMaxCols = (): number => {
+    return Math.floor(windowWidth / CELL_SIZE);
+  };
+
+  const calculateMaxRows = (): number => {
+    return Math.floor(windowHeight / CELL_SIZE);
+  };
+
+  // Maximum values
+  const [maxMines, setMaxMines] = useState<number>(calculateMaxMines());
+  const [maxCols, setMaxCols] = useState<number>(calculateMaxCols());
+  const [maxRows, setMaxRows] = useState<number>(calculateMaxRows());
 
   const startGame = (): void => {
     setGameSettings(boardSettings);
@@ -58,6 +68,18 @@ const Settings = () => {
       window.removeEventListener("resize", handleResize);
     };
   }, []);
+
+  useEffect(() => {
+    setMaxCols(calculateMaxCols());
+  }, [windowWidth]);
+
+  useEffect(() => {
+    setMaxRows(calculateMaxRows());
+  }, [windowHeight]);
+
+  useEffect(() => {
+    setMaxMines(calculateMaxMines());
+  }, [boardSettings]);
 
   return (
     <Backdrop>
@@ -78,17 +100,12 @@ const Settings = () => {
             </h3>
             <Slider
               min={MIN_COLS}
-              max={maxCols()}
+              max={maxCols}
               value={boardSettings.COLS}
-              onChange={(e: ChangeEvent<HTMLInputElement>) => {
+              onChange={(val: number) => {
                 setBoardSettings((prev: iGameSettings) => {
                   let tmp: iGameSettings = JSON.parse(JSON.stringify(prev));
-                  tmp.COLS =
-                    Number(e.target.value) < MIN_COLS
-                      ? MIN_COLS
-                      : Number(e.target.value) > maxCols()
-                      ? maxCols()
-                      : Number(e.target.value);
+                  tmp.COLS = val;
                   return tmp;
                 });
               }}
@@ -100,17 +117,12 @@ const Settings = () => {
             </h3>
             <Slider
               min={MIN_ROWS}
-              max={maxRows()}
+              max={maxRows}
               value={boardSettings.ROWS}
-              onChange={(e: ChangeEvent<HTMLInputElement>) => {
+              onChange={(val: number) => {
                 setBoardSettings((prev: iGameSettings) => {
                   let tmp: iGameSettings = JSON.parse(JSON.stringify(prev));
-                  tmp.ROWS =
-                    Number(e.target.value) < MIN_ROWS
-                      ? MIN_COLS
-                      : Number(e.target.value) > maxRows()
-                      ? maxRows()
-                      : Number(e.target.value);
+                  tmp.ROWS = val;
                   return tmp;
                 });
               }}
@@ -122,17 +134,12 @@ const Settings = () => {
             </h3>
             <Slider
               min={MIN_MINES}
-              max={maxMines()}
+              max={maxMines}
               value={boardSettings.NUM_MINES}
-              onChange={(e: ChangeEvent<HTMLInputElement>) => {
+              onChange={(val: number) => {
                 setBoardSettings((prev: iGameSettings) => {
                   let tmp: iGameSettings = JSON.parse(JSON.stringify(prev));
-                  tmp.NUM_MINES =
-                    Number(e.target.value) < MIN_MINES
-                      ? MIN_MINES
-                      : Number(e.target.value) > maxMines()
-                      ? maxMines()
-                      : Number(e.target.value);
+                  tmp.NUM_MINES = val;
                   return tmp;
                 });
               }}
