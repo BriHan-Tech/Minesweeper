@@ -1,8 +1,5 @@
 import { createContext } from "react";
-import {
-  iGameSettingsContext,
-  iGameSettings,
-} from "../../interfaces/iGameSettings";
+import { iGameSettingsContext } from "../../interfaces/iGameSettings";
 
 const defaultValue: iGameSettingsContext = {
   gameSettings: {
