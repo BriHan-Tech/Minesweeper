@@ -39,11 +39,11 @@ const Settings = () => {
   };
 
   const calculateMaxCols = (): number => {
-    return Math.floor(windowWidth / CELL_SIZE) - 1;
+    return Math.max(Math.floor(windowWidth / CELL_SIZE) - 1, MIN_COLS);
   };
 
   const calculateMaxRows = (): number => {
-    return Math.floor(windowHeight / CELL_SIZE) - 1;
+    return Math.max(Math.floor(windowHeight / CELL_SIZE) - 1, MIN_ROWS);
   };
 
   // Maximum values
