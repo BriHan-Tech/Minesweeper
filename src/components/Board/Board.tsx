@@ -3,11 +3,13 @@ import { useState, useEffect, useContext } from "react";
 import Cell from "../Cell/Cell";
 import iCell from "../../interfaces/iCell";
 
-import "./Board.scss";
 import boardSetup from "../../logic/boardSetup";
 import { clickedCellWithNumMinesZero, isGameWon } from "../../logic/gameLogic";
 import { GameContext } from "../App/GameContext";
 import { GameSettingsContext } from "../App/GameSettingsContext";
+import winningSoundEffect from "../../assets/sounds/win.wav";
+
+import "./Board.scss";
 
 const Board = () => {
   const [board, setBoard] = useState<iCell[][]>([]);
@@ -117,6 +119,7 @@ const Board = () => {
   useEffect(() => {
     // If the game status is 'progressing' and the game has been won
     if (gameStatus === "P" && isGameWon(board)) {
+      new Audio(winningSoundEffect).play();
       setGameStatus("W");
     }
   }, [board]);
