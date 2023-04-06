@@ -106,3 +106,46 @@
         }
     }
 }
+
+@media screen and (max-width: 425px) {
+    .slider {
+        &__label {
+            padding: 0.25rem;
+            font-size: 0.9rem;
+        }
+
+        &__range-slider {
+            &::-webkit-slider-thumb {
+                margin-top: -0.35rem;
+                background-color: var(--green);
+                height: 1rem;
+                width: 1rem;
+            }
+
+            &::-webkit-slider-runnable-track {
+                height: 0.25rem;
+            }
+
+            &::-moz-range-track {
+                height: 0.25rem;
+            }
+
+            &::-moz-range-thumb {
+                height: 1rem;
+                width: 1rem;
+            }
+        }
+
+        &__number-input {
+            width: 25px;
+            height: 25px;
+            font-size: 0.75rem;
+            padding: 0;
+            border-radius: .3rem;
+            -webkit-border-radius: .3rem;
+            -moz-border-radius: .3rem;
+            -ms-border-radius: .3rem;
+            -o-border-radius: .3rem;
+        }
+    }
+}

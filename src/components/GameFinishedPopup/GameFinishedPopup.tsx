@@ -32,7 +32,7 @@ const GameFinishedPopup = () => {
           {gameStatus === "W" ? "You Win!" : "You Lose!"}
         </h1>
         <button
-          className="popup__btn"
+          className="btn"
           onClick={() => {
             setGameStatus("");
           }}

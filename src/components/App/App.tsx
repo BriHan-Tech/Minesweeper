@@ -34,40 +34,42 @@ const App = () => {
           {(gameStatus === "W" || gameStatus === "L") && <GameFinishedPopup />}
         </AnimatePresence>
 
-        <div className="container">
-          <div
-            className="toolbar"
-            style={{
-              width: `${CELL_SIZE * gameSettings.COLS}px`,
-            }}
-          >
-            <div className="toolbar__left">
-              <span className="toolbar__left__mine-count">
-                <img
-                  src={mineLineArt}
-                  alt="mines"
-                  className="toolbar__left__mine-count__icon"
-                />
-                {gameSettings.NUM_MINES}
-              </span>
-              <Timer />
-            </div>
-            <motion.button
-              className="toolbar__reset-btn"
+        {gameStatus != "" && (
+          <div className="container">
+            <div
+              className="toolbar"
               style={{
-                backgroundImage: `url(${reset})`,
+                width: `${CELL_SIZE * gameSettings.COLS}px`,
               }}
-              whileHover={{
-                rotate: 360,
-                transition: { duration: 0.1, ease: "linear" },
-              }}
-              onClick={() => {
-                setGameStatus("");
-              }}
-            ></motion.button>
+            >
+              <div className="toolbar__left">
+                <span className="toolbar__left__mine-count">
+                  <img
+                    src={mineLineArt}
+                    alt="mines"
+                    className="toolbar__left__mine-count__icon"
+                  />
+                  {gameSettings.NUM_MINES}
+                </span>
+                <Timer />
+              </div>
+              <motion.button
+                className="toolbar__reset-btn"
+                style={{
+                  backgroundImage: `url(${reset})`,
+                }}
+                whileHover={{
+                  rotate: 360,
+                  transition: { duration: 0.1, ease: "linear" },
+                }}
+                onClick={() => {
+                  setGameStatus("");
+                }}
+              ></motion.button>
+            </div>
+            <Board />
           </div>
-          <Board />
-        </div>
+        )}
       </GameContext.Provider>
     </GameSettingsContext.Provider>
   );

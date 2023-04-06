@@ -39,11 +39,11 @@ const Settings = () => {
   };
 
   const calculateMaxCols = (): number => {
-    return Math.floor(windowWidth / CELL_SIZE);
+    return Math.floor(windowWidth / CELL_SIZE) - 1;
   };
 
   const calculateMaxRows = (): number => {
-    return Math.floor(windowHeight / CELL_SIZE);
+    return Math.floor(windowHeight / CELL_SIZE) - 1;
   };
 
   // Maximum values
@@ -147,7 +147,7 @@ const Settings = () => {
           </div>
         </div>
 
-        <button className="popup__btn" onClick={startGame}>
+        <button className="btn" onClick={startGame}>
           Start Game!
         </button>
       </motion.div>

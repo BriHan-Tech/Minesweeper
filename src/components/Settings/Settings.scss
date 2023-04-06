@@ -38,5 +38,36 @@
             }
         }
     }
+}
 
+@media screen and (max-width: 600px) {
+    .settings-popup {
+        &__title {
+            font-size: 3rem;
+        }
+    }
+}
+
+@media screen and (max-width: 425px) {
+.settings-popup {
+    padding: 1rem 1rem;
+
+    &__title {
+        font-size: 2rem;
+    }
+
+    &__settings {
+        margin: 20px 0;
+        padding: 0 1rem 1.25rem 1rem;
+
+        &__slider {
+            padding: 1.25rem 0 0 0 ;
+
+            &__label {
+                color: white;
+                font-size: 1rem;
+            }
+        }
+    }
+}
 }
