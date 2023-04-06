@@ -1,7 +1,8 @@
 # Minesweeper
+The working app can be tried here: [https://brihan-tech.github.io/Minesweeper/](https://brihan-tech.github.io/Minesweeper/)!
 
 ## Get Started
-1. Clone this repository: `git clone `
+1. Clone this repository: `git clone https://github.com/BriHan-Tech/Minesweeper.git`
 2. Install relevant dependencies
     1. Open a terminal window and navigate to the directory where you extracted or cloned this project
     2. Run the following command to install the project dependencies using a package manager such as npm or yarn:
